@@ -1,0 +1,90 @@
+name: "不具合報告"
+description: "NobiShotが正常に動作しない場合はこちらから報告してください。"
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        報告ありがとうございます。投稿前に [READMEのFAQ](https://github.com/yutodev-03/NobiShot#よくある質問faq) を確認してください。
+        **個人情報、会社の内部情報、パスワード、認証情報、ローカルPCのユーザー名を含むパスは投稿しないでください。**
+  - type: input
+    id: version
+    attributes:
+      label: "NobiShotのバージョン"
+      description: "利用しているバージョンを入力してください。"
+      placeholder: "例：v1.1.15"
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: "Windowsのバージョン"
+      options:
+        - "Windows 11"
+        - "Windows 10"
+        - "その他 / 不明"
+    validations:
+      required: true
+  - type: dropdown
+    id: header-mode
+    attributes:
+      label: "撮影モード"
+      options:
+        - "固定ヘッダーなし"
+        - "固定ヘッダーあり"
+        - "両方で発生"
+        - "撮影開始前 / 不明"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: "発生した問題"
+      description: "何が起きたか、できるだけ具体的に記載してください。"
+      placeholder: "例：2回目のスクロール後、画像が結合されなくなる"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: "再現手順"
+      description: "問題が発生するまでに行った操作を順番に記載してください。"
+      placeholder: |
+        1. NobiShotを起動する
+        2. 固定ヘッダーなしを選択する
+        3. 撮影範囲を選択する
+        4. スクロールすると...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: "期待した動作"
+      placeholder: "例：スクロールした範囲が1枚の画像として結合される"
+    validations:
+      required: true
+  - type: dropdown
+    id: reproducibility
+    attributes:
+      label: "再現頻度"
+      options:
+        - "毎回"
+        - "ときどき"
+        - "1回だけ"
+        - "未確認"
+    validations:
+      required: false
+  - type: textarea
+    id: additional
+    attributes:
+      label: "補足情報（任意）"
+      description: "画面倍率、モニター構成、エラーメッセージ、機密情報を除去した画像など。"
+    validations:
+      required: false
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: "投稿前の確認"
+      options:
+        - label: "添付画像や文章に個人情報・機密情報・認証情報が含まれていないことを確認しました。"
+          required: true

@@ -1,0 +1,94 @@
+name: Generate NobiShot usage animation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - docs/demo-refresh.txt
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Render illustrated scrolling GIF
+        shell: bash
+        run: |
+          python -m pip install --disable-pip-version-check 'Pillow>=10,<13'
+          mkdir -p docs/images
+          python - <<'PY'
+          from PIL import Image,ImageDraw,ImageFont
+          W,H=850,460
+          C={'bg':'#0e192d','panel':'#1b2b45','text':'#f2f7ff','muted':'#b0c0d9','cyan':'#54e2d7','blue':'#468af6'}
+          def font(size,bold=False):
+              p='/usr/share/fonts/truetype/dejavu/DejaVuSans'+('-Bold' if bold else '')+'.ttf'
+              return ImageFont.truetype(p,size)
+          f12,f17,f22,f30=font(12),font(17),font(22,True),font(30,True)
+          def make(n):
+              im=Image.new('RGB',(W,H),C['bg']);d=ImageDraw.Draw(im)
+              d.rounded_rectangle((29,24,62,57),radius=9,fill=C['blue'])
+              d.text((75,23),'NobiShot',font=f30,fill='white')
+              d.text((29,71),'Turn a long page into one screenshot',font=f17,fill=C['muted'])
+              d.text((672,39),'CONCEPT DEMO',font=f12,fill=C['cyan'])
+              d.rounded_rectangle((27,121,595,363),radius=15,fill=C['panel'],outline='#416083',width=2)
+              d.rounded_rectangle((27,121,595,161),radius=15,fill='#304361')
+              for x,c in [(48,'#df8293'),(65,'#e5c475'),(82,'#6fc9a2')]:
+                  d.ellipse((x,137,x+10,147),fill=c)
+              d.text((135,130),'Sample dashboard',font=f17,fill='white')
+              d.rectangle((49,173,571,342),fill='#f2f7ff')
+              d.rectangle((49,173,571,204),fill='#b5cff0')
+              d.text((64,179),'FIXED HEADER',font=f17,fill='#193c65')
+              shift=0 if n<13 else min(190,(n-13)*10)
+              for i in range(11):
+                  y=220+i*36-shift
+                  if 206<y<330:
+                      d.rounded_rectangle((67,y,487-(i*23)%90,y+10),radius=5,fill='#a8bfdc')
+                      if y+23<340:d.rounded_rectangle((67,y+17,425-(i*11)%55,y+22),radius=3,fill='#c9d5e7')
+              d.rectangle((49,173,571,204),fill='#b5cff0')
+              d.text((64,179),'FIXED HEADER',font=f17,fill='#193c65')
+              if n<13:
+                  width=int(90+(440*min(1,n/11)))
+                  bot=int(242+84*min(1,n/11))
+                  bound=(65,212,65+width,bot)
+              else:bound=(65,212,548,325)
+              d.rectangle(bound,outline=C['cyan'],width=3)
+              if 13<=n<31:d.text((368,302),'SCROLLING',font=f17,fill='#12597f')
+              d.rounded_rectangle((610,121,824,363),radius=15,fill=C['panel'],outline='#416083',width=2)
+              d.text((624,138),'Single PNG',font=f22,fill='white')
+              if n>=31:
+                  bottom=208+int(130*min(1,(n-31)/12))
+                  d.rounded_rectangle((655,194,772,bottom),radius=6,fill='#f3f7ff')
+                  d.rectangle((667,207,760,224),fill='#b5cff0')
+                  for j in range(6):
+                      y=237+j*16
+                      if y+7<bottom:d.rounded_rectangle((667,y,755-(j*11)%36,y+6),radius=3,fill='#b2c6df')
+              if n>=44:d.text((655,343),'SAVED',font=f17,fill=C['cyan'])
+              stage=0 if n<13 else 1 if n<31 else 2
+              for i,t in enumerate(['1. SELECT AREA','2. SCROLL','3. SAVE PNG']):
+                  x=30+i*275
+                  d.rounded_rectangle((x,379,x+255,427),radius=10,fill='#2d5b8a' if i==stage else '#21334c')
+                  d.text((x+19,394),t,font=f17,fill=C['text'] if i==stage else C['muted'])
+              d.text((503,439),'Illustration - not actual app footage',font=f12,fill='#a7b8d2')
+              return im.quantize(colors=96)
+          frames=[make(i) for i in range(54)]
+          frames[0].save('docs/images/nobishot-demo.gif',save_all=True,append_images=frames[1:],duration=115,loop=0,optimize=True,disposal=2)
+          print('Generated docs/images/nobishot-demo.gif')
+          PY
+      - name: Commit animation to public README assets
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/images/nobishot-demo.gif
+          if ! git diff --cached --quiet; then
+            git commit -m "docs: add illustrated NobiShot scrolling GIF"
+            git push
+          fi

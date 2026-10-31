@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="660" viewBox="0 0 1280 660" role="img" aria-labelledby="title desc">
+<title id="title">NobiShot のスクロールキャプチャの流れ</title>
+<desc id="desc">範囲を選び、手動でスクロールし、縦長の画像を作成する説明図。実際のアプリ画面ではありません。</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#101a2e"/><stop offset="1" stop-color="#12284a"/></linearGradient>
+  <linearGradient id="bright" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#5ca8ff"/><stop offset="1" stop-color="#76ebca"/></linearGradient>
+  <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#020611" flood-opacity=".35"/></filter>
+</defs>
+<rect width="1280" height="660" rx="28" fill="url(#bg)"/>
+<circle cx="1225" cy="30" r="220" fill="#2b6bc0" opacity=".13"/>
+<circle cx="30" cy="630" r="190" fill="#46d6c0" opacity=".06"/>
+<rect x="52" y="40" width="50" height="50" rx="14" fill="#387fea"/>
+<path d="M66 57h22v6H76v6h12v6H66z" fill="white" opacity=".94"/>
+<text x="117" y="77" fill="#fff" font-family="Noto Sans JP, Yu Gothic UI, sans-serif" font-size="29" font-weight="700">NobiShot</text>
+<text x="52" y="141" fill="#fff" font-family="Noto Sans JP, Yu Gothic UI, sans-serif" font-size="40" font-weight="700">長い画面を、1枚の画像に。</text>
+<text x="54" y="181" fill="#b7c9e2" font-family="Noto Sans JP, Yu Gothic UI, sans-serif" font-size="19">範囲を選ぶ  →  手動でスクロール  →  画像を結合して保存</text>
+<g filter="url(#shadow)">
+  <rect x="50" y="220" width="490" height="334" rx="20" fill="#19243a" stroke="#3a5375" stroke-width="2"/>
+  <rect x="50" y="220" width="490" height="45" rx="20" fill="#2b3851"/>
+  <rect x="50" y="252" width="490" height="13" fill="#2b3851"/>
+  <circle cx="78" cy="242" r="6" fill="#e78291"/><circle cx="99" cy="242" r="6" fill="#e9c273"/><circle cx="120" cy="242" r="6" fill="#70cba7"/>
+  <rect x="150" y="231" width="267" height="23" rx="9" fill="#172238"/>
+  <text x="164" y="247" font-family="Noto Sans JP, sans-serif" font-size="12" fill="#b6c5d8">example.com / long-page</text>
+  <rect x="87" y="290" width="417" height="231" rx="10" fill="#f7f9ff"/>
+  <rect x="112" y="316" width="244" height="18" rx="7" fill="#a8bfe3"/>
+  <rect x="112" y="352" width="358" height="10" rx="5" fill="#d3dded"/>
+  <rect x="112" y="373" width="342" height="10" rx="5" fill="#d3dded"/>
+  <rect x="112" y="394" width="367" height="10" rx="5" fill="#d3dded"/>
+  <rect x="112" y="428" width="120" height="71" rx="8" fill="#dfeaff"/>
+  <rect x="247" y="432" width="210" height="10" rx="5" fill="#d3dded"/>
+  <rect x="247" y="455" width="193" height="10" rx="5" fill="#d3dded"/>
+  <rect x="247" y="478" width="170" height="10" rx="5" fill="#d3dded"/>
+  <rect x="98" y="305" width="390" height="191" rx="6" fill="none" stroke="#36bfe9" stroke-width="4" stroke-dasharray="10 7"/>
+  <rect x="87" y="290" width="417" height="16" fill="#6fbaf3" opacity=".18"/>
+</g>
+<text x="67" y="590" fill="#fff" font-family="Noto Sans JP, Yu Gothic UI, sans-serif" font-size="24" font-weight="700">1  撮影範囲を指定</text>
+<g>
+  <path d="M568 369H690" stroke="url(#bright)" stroke-width="9" stroke-linecap="round"/>
+  <path d="M674 353l22 16-22 16" fill="none" stroke="#74e6d0" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="570" y="400" width="113" height="60" rx="14" fill="#223f5d" stroke="#4a7b9e"/>
+  <text x="626" y="425" fill="#e0f3ff" font-family="Noto Sans JP, sans-serif" font-size="15" font-weight="700" text-anchor="middle">手動で</text>
+  <text x="626" y="445" fill="#e0f3ff" font-family="Noto Sans JP, sans-serif" font-size="15" font-weight="700" text-anchor="middle">スクロール</text>
+</g>
+<g filter="url(#shadow)">
+  <rect x="731" y="221" width="490" height="334" rx="20" fill="#19243a" stroke="#3a5375" stroke-width="2"/>
+  <rect x="810" y="243" width="318" height="285" rx="11" fill="#f7f9ff"/>
+  <rect x="830" y="263" width="276" height="22" rx="6" fill="#aac0e4"/>
+  <rect x="830" y="301" width="273" height="8" rx="4" fill="#ced9e9"/>
+  <rect x="830" y="320" width="242" height="8" rx="4" fill="#ced9e9"/>
+  <rect x="830" y="339" width="260" height="8" rx="4" fill="#ced9e9"/>
+  <rect x="830" y="365" width="105" height="57" rx="7" fill="#dceaff"/>
+  <rect x="947" y="365" width="158" height="8" rx="4" fill="#d1dded"/>
+  <rect x="947" y="383" width="147" height="8" rx="4" fill="#d1dded"/>
+  <rect x="947" y="401" width="142" height="8" rx="4" fill="#d1dded"/>
+  <rect x="830" y="436" width="273" height="8" rx="4" fill="#d1dded"/>
+  <rect x="830" y="455" width="240" height="8" rx="4" fill="#d1dded"/>
+  <rect x="830" y="474" width="267" height="8" rx="4" fill="#d1dded"/>
+  <rect x="830" y="499" width="236" height="8" rx="4" fill="#d1dded"/>
+  <rect x="1077" y="245" width="52" height="27" rx="13" fill="#29b98d"/>
+  <text x="1103" y="263" fill="#fff" font-family="Arial, sans-serif" font-size="13" font-weight="700" text-anchor="middle">PNG</text>
+</g>
+<text x="755" y="590" fill="#fff" font-family="Noto Sans JP, Yu Gothic UI, sans-serif" font-size="24" font-weight="700">2  結合・コピー・保存</text>
+<text x="1225" y="635" fill="#a4b9d5" font-family="Noto Sans JP, Yu Gothic UI, sans-serif" font-size="14" text-anchor="end">※ 操作の説明用イメージです（実際の画面とは異なります）</text>
+</svg>
